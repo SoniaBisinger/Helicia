@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center align-item-center py-3 card_confirmed_order">
+  <h4 class="fs-3 fw-bold fst-italic">Confirmation order</h4>
+</div>
+
+<div class="container d-flex justify-content-center">
+  <div class="row">
+    <%= link_to stores_path, style: "text-decoration: none" do %>
+      <%= image_tag("back.png", width: "45", height: "45", class:"rounded-circle mt-3") %>
+    <% end %>
+    <div class= " p-3 my-3 card_congratulation">
+      <div class="">
+        <div style="height: 100px;" class= "d-flex justify-content-between align-middle mt-3 mb-3">
+          <%= image_tag("feuxx.png", width: "90", height: "90", class:"") %>
+          <h4 class="">Congratulations</h4>
+          <%= image_tag("feuxx.png", width: "90", height: "90", class:"") %>
+        </div>
+        <p>You have finished your order !</p>
+        <p class="pb-1"><strong>Order :</strong></p>
+        <div class="d-flex justify-content-between mb-3">
+          <div>
+          <p>Request completed:</p>
+          <p>Number:</p>
+          <p>Total price:</p>
+          <p>Payment method:</p>
+          </div>
+          <div>
+
+          <% order_total = @order.article_orders.sum(&:total) %>
+          <% fee = @order.article_orders.first.article.store.delivery_fees %>
+
+          <p class="d-flex justify-content-end"> <%= DateTime.now.strftime('%d-%m-%Y %H:%M') %> </p>
+          <p class="d-flex justify-content-end">#<%= @order.number%></p>
+          <p class="d-flex justify-content-end main"><%= sprintf('%.2f', order_total + fee) %> CHF</p>
+          <p class="d-flex justify-content-end">Visa</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="map_dynamic">
+      <div class="my-5" style="width: 90%; height: 400px;"
+        data-controller="map"
+        data-map-user-marker-value="<%= @marker_user.to_json %>"
+        data-map-order-marker-value="<%= @marker_order.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+
+  </div>
+</div>

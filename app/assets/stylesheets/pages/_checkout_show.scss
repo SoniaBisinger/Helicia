@@ -1,0 +1,83 @@
+.adress {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  margin: auto;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img {
+  height: 30px;
+  width: 30px;
+}
+
+.image-text {
+  color: rgb(48, 140, 124);
+}
+
+.btn {
+  width: 90%;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-left: 10px;
+}
+
+h2,
+h4 {
+  color: rgb(0, 0, 0);
+  margin-left: 10px;
+}
+
+.line {
+  background-color: rgb(142, 142, 142);
+  width: 100%;
+  height: 2px;
+  margin: 40px 0px;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.card_congratulation {
+  background: #e6e6e6;
+  // border: 1px solid grey;
+  box-shadow: 4px 5px 6px -5px;
+  // border-radius: 5px;
+}
+
+.card_confirmed_order {
+  background: #e6e6e6;
+  // border: 1px solid grey;
+  box-shadow: 4px 5px 6px -5px;
+}
+
+h1 {
+  font-style: italic;
+  // text-align: center;
+}
+
+.title_category {
+  margin-left: 0px;
+}
+
+.card_address {
+  background-color: #e6e6e6;
+  width: 95%;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 10px 18px;
+  margin: 20px;
+  box-shadow: 3px 4px 14px -7px;
+}

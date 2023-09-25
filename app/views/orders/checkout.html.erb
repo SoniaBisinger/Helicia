@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+
+    <!-- bouton back -->
+    <% if @order.id == nil %>
+      <%= link_to stores_path, style: "text-decoration: none" do %>
+        <%= image_tag("back.png", width: "45", height: "45", class:"rounded-circle my-3") %>
+      <% end %>
+    <% else %>
+      <%= link_to order_path(@order), style: "text-decoration: none" do %>
+        <%= image_tag("back.png", width: "45", height: "45", class:"rounded-circle my-3") %>
+      <% end %>
+    <% end %>
+
+    <!-- adrress de livraison -->
+
+    <h1 class="mb-4">Delivery Address</h1>
+
+    <div class="card_address d-flex justify-content-between">
+      <%= image_tag("marker_payement.png", width: "40", height: "30", class:"") %>
+      <p class="d-flex justify-content-center">Rte de Praz Véguey 29, 1022 Chavannes-près-Renens</p>
+    </div>
+
+    <div class="line"></div>
+
+    <h1 class="mb-5">Payment</h1>
+
+    <% order_total = @order.article_orders.sum(&:total) %>
+    <% fee = @order.article_orders.first.article.store.delivery_fees %>
+    <% total = order_total + fee %>
+    <div class="d-flex justify-content-between">
+      <div>
+        <p class="fs-5">Cart total :</p>
+        <p class="fs-5">Delivery fees :</p>
+        <p class="fs-5 fw-bold">Total price :</p>
+      </div>
+      <div>
+        <p class="d-flex justify-content-end fs-5 main"> <%= sprintf('%.2f', order_total.to_f) %> CHF</p>
+        <p class="d-flex justify-content-end fs-6 pb-1"> <%= sprintf('%.2f', fee.to_f) %> CHF</p>
+        <p class="d-flex justify-content-end fs-5 fw-bold main"> <%= sprintf('%.2f', total.to_f) %> CHF</p>
+      </div>
+    </div>
+
+    <div class="line"></div>
+
+    <%= render 'credit_card' %>
+
+    </div>
+
+    <%= link_to "Validate", confirmation_order_path, class:"btn btn_magic fs-3 d-flex justify-content-center text-white" %>
+
+
+  </div>
+</div>

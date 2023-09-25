@@ -1,0 +1,52 @@
+.container-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card {
+  border: none;
+  background-color: #ffff;
+}
+
+.container {
+  border: none;
+  min-height: 80vh;
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+  background-size: cover;
+  height: 180px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  border-radius: 8px;
+}
+
+.input-estimated_delivery_time {
+  color: #9a9a9a;
+}
+
+
+.title_circle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  background-color: #e1dfdf;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle p {
+  color: #000000;
+  font-size: 16px;
+  margin: 0;
+}

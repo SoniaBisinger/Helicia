@@ -1,0 +1,45 @@
+<div class="container" data-controller="insert-in-cart">
+  <div>
+    <% i = 0 %>
+    <% @order.article_orders.each do |article_order| %>
+      <% article = article_order.article %>
+      <div class="d-flex mb-4 flex-column" data-insert-in-cart-target="items">
+        <div>
+          <div class="item-container">
+            <%= image_tag(article.image_url, width: "120", height: "120") %>
+            <h3 class="d-flex align-items-end flex-column fs-4 title text-dark">
+              <%= article.title %>
+              <div class="item_price pb-2 text-black">Item's Price:
+                <span id="price<%= i %>"><%= sprintf('%.2f', article.price.to_f) %> CHF
+                </span>
+              </div>
+            </h3>
+          </div>
+
+        </div>
+        <%= form_with url: orders_add_path, data: {action: "submit->insert-in-cart#send", insert_in_cart_target: "form", insert_in_cart_id_param: i, insert_in_cart_num_param: article_order.quantity } do |f|  %>
+          <%= f.hidden_field :id, value: article.id %>
+          <div class="bottom">
+            <div class="buttons">
+              <%= f.number_field :quantity, value: article_order.quantity, min: 0, data: {action: "input->insert-in-cart#retrieveQuantity"}, class: "input-quantity" %>
+              <%= f.submit "Add", class: "add-btn fs-3 d-flex justify-content-center"  %>
+            <% end %>
+            <%= form_with(url: orders_remove_path) do |f|%>
+              <%= f.hidden_field :id, value: article_order.id %>
+              <%= f.submit "X", class: "delete btn-success fs-3 d-flex justify-content-center " %>
+            <% end %>
+            </div>
+            <div class="d-flex align-items-end flex-column main">
+
+              <p class="totale">Total: <span data-insert-in-cart-target="total"><%= sprintf('%.2f',article_order.total.to_f) %> CHF</span></p>
+            </div>
+          </div>
+        </div>
+        <% i += 1 %>
+      <% end %>
+      <div>
+        <h5 id="cart_total">Total cart amount: <span data-insert-in-cart-target="endtotal"><%= sprintf('%.2f', @order.total.to_f) %> CHF</span></h5>
+      </div>
+    </div>
+  </div>
+</div>

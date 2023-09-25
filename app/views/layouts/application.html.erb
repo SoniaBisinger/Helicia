@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Helicia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
+  </head>
+
+  <body style="height: 100vh;">
+    <%= render "shared/flashes" %>
+
+    <!-- Logo et nom de marque ici -->
+    <%= link_to stores_path, style: "text-decoration: none" do %>
+      <%= image_tag("logo1.png", width: "200", class:"my-4") %>
+    <% end %>
+
+    <span class="notice"><%= notice %></span>
+    <span class="alert"><%= alert %></span>
+    <%= yield %>
+    <%= render "shared/navbar" %>
+  </body>
+</html>

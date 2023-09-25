@@ -1,0 +1,47 @@
+<!-- debug button logout-->
+
+<div class="container">
+
+  <!-- Search bar intelligente-->
+
+  <div class="row justify-content-center">
+    <div class="col-sm-8 my-3 p-2 bd-highlight">
+      <%= image_tag("loupe2.png", :crop=>"fill", width: "28", height: "28", class:"ms-2 mt-1 position-absolute") %>
+      <%= form_with url: stores_path, method: :get, class: "" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "py-2 form-control rounded-pill main_grey position-arelative ps-5",
+              placeholder: "Pharmacys, Articles, etc..."
+          %>
+          <div id="search_result" style="color: grey">
+            <% if params[:query] %>
+              <p> You found <%=  @stores.count  %> stores </p>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+
+    <!-- resultat de la search_bar -->
+
+  <% @stores.each do |store| %>
+    <div class="card">
+      <%= link_to  store_path(store) do%>
+        <%= image_tag(store.image_url, class: "image") %>
+      <%end%>
+      <div class="d-flex justify-content-between ">
+        <h4 class="title mt-1 ="><%= store.title %></h4>
+        <span class="d-flex align-middle">
+          <div class="fs-5 align-top">
+            <%= image_tag("etoile.jpg", width: "16", height: "16") %>
+            <span class="fs-6"><%= sprintf('%.2f', store.rating) %> (<%= rand(60..120)%> notes)</span>
+          </div>
+        </span>
+      </div>
+      <div class="d-flex justify-content-between">
+        <p>Delivery fees: <%= sprintf('%.2f', store.delivery_fees) %> CHF</p>
+        <p class="input-estimated_delivery_time" name="estimated_delivery_time" readonly>~<%= store.estimated_delivery_time %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

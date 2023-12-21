@@ -1,12 +1,12 @@
 databases:
   - name: postgres
     ipAllowList: []
-    databaseName: Helicia_production
-    user: Helicia
+    databaseName: helicia_production
+    user: helicia
 
 services:
   - type: web
-    name: Helicia
+    name: helicia
     env: ruby
     buildCommand: "./render-build.sh"
     startCommand: "bundle exec rails s"
